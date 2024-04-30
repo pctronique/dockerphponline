@@ -1,0 +1,5 @@
+/nbproject/private/
+/.vscode
+/.env
+/projecttmp/
+/www/config/config_sgbd.php

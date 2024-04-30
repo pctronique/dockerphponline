@@ -1,0 +1,8 @@
+<?php
+$type = "mysql";
+$server = "";
+$port = "0";
+$base = "";
+$user = "";
+$pass = "";
+$prefix = "";
