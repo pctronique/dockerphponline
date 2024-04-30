@@ -2,7 +2,7 @@
 $type = "mysql";
 $server = "dockerweb_mariadb";
 $port = "0";
-$base = "";
+$dbname = "";
 $user = "root";
 $pass = "secret";
 $prefix = "";
