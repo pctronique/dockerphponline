@@ -84,7 +84,7 @@ Pour faire une configuration personnalisé.
 
 Les modifications de configuration de la base de données devra être fait dans le fichier « config/config_sgbd.php », surtout pas dans « www/config/config_sgbd.php ».
 
-## Données de la base de données
+### Données de la base de données
 
 Le dossier « .dockertmp/mariadb_data/ » va contenir la base de données, ceci permet de ne pas perdre la base de données quand on supprime le conteneur (si on veut supprimer la base de donner, il faut supprimer le conteneur de celui-ci et ce dossier).
 Le dossier « .dockertmp » ne doit pas être mis sur le github, c’est un dossier temporaire. 
