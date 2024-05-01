@@ -29,7 +29,7 @@ Version 1.0.0
 
 Pour créer un projet php avec docker.
 
-Il install :
+Les versions :
 <ul>
   <li>php:8.3.7RC1</li>
   <li>mariadb:10.4.18</li>
