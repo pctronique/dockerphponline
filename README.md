@@ -12,6 +12,11 @@ Version 1.0.0
         <ul>
             <li><a href="#Versions">Versions</a></li>
             <li><a href="#Config">Config</a></li>
+            <ul>
+                <li><a href="#Configurations-du-SGBD-du-site">Configurations SGBD du site</a></li>
+                <li><a href="#php.ini-et-httpd.conf">php.ini et httpd.conf</a></li>
+                <li><a href="#Xdebug">Xdebug</a></li>
+            </ul>
             <li><a href="#Les-données-de-la-base-de-données">Les données de la base de données</a></li>
             <li><a href="#Bin-et-install.sh">Bin et install.sh</a></li>
         </ul>
@@ -87,15 +92,18 @@ FROM php:8.3.7RC1-fpm
 
 ### Config
 
+#### Configurations du SGBD du site
 Les modifications de configuration de la base de données devront être effectuées dans le fichier « config/config_sgbd.php ».
 
 > [!WARNING]
 > Ne surtout pas faire les modifications dans le fichier « www/config/config_sgbd.php ».
 
-Il utilise xdebug et il est déjà configuré, mais il est possible de modifier la configuration dans le fichier « .docker/php/xdebug.ini »
-
+#### php.ini et httpd.conf
 Le fichier « php.ini » se trouve dans « .docker/php/ ».
 Le fichier « httpd.conf » se trouve dans « .docker/apache/ ».
+
+#### Xdebug
+Il utilise xdebug et il est déjà configuré, mais il est possible de modifier la configuration dans le fichier « .docker/php/xdebug.ini »
 
 ### Les données de la base de données
 
