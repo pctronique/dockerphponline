@@ -99,8 +99,10 @@ Les modifications de configuration de la base de données devront être effectu�
 > Ne surtout pas faire les modifications dans le fichier « www/config/config_sgbd.php ».
 
 #### php.ini et httpd.conf
-Le fichier « php.ini » se trouve dans « .docker/php/ ».
-Le fichier « httpd.conf » se trouve dans « .docker/apache/ ».
+<ul>
+  <li>Le fichier « php.ini » se trouve dans « .docker/php/ ».</li>
+  <li>Le fichier « httpd.conf » se trouve dans « .docker/apache/ ».</li>
+</ul>
 
 #### Xdebug
 Il utilise xdebug et il est déjà configuré, mais il est possible de modifier la configuration dans le fichier « .docker/php/xdebug.ini »
