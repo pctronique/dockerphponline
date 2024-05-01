@@ -12,7 +12,7 @@ Version 1.0.0
         <ul>
             <li><a href="#Versions">Versions</a></li>
             <li><a href="#Config">Config</a></li>
-            <li><a href="#Données-de-la-base-de-données">Données de la base de données</a></li>
+            <li><a href="#Les-données-de-la-base-de-données">Les données de la base de données</a></li>
             <li><a href="#Bin-et-install.sh">Bin et install.sh</a></li>
         </ul>
     </li>
@@ -92,7 +92,7 @@ Il utilise xdebug et il est déjà configuré, mais il est possible de modifier 
 Le fichier « php.ini » se trouve dans « .docker/php/ ».
 Le fichier « httpd.conf » se trouve dans « .docker/apache/ ».
 
-### Données de la base de données
+### Les données de la base de données
 
 Le dossier « .dockertmp/mariadb_data/ » va contenir la base de données, ceci permet de ne pas perdre la base de données quand on supprime le conteneur (si on veut supprimer la base de données, il faut supprimer le conteneur de celui-ci et ce dossier).
 
