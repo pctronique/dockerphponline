@@ -188,6 +188,7 @@ Exemple :
 Exporter la base de données dans le fichier « project_def.sql », le placer dans « config » et faire :
 ```
 # start sql
+- ./config/0001_project.sql:/docker-entrypoint-initdb.d/0001_project.sql
 - ./config/project_def.sql:/docker-entrypoint-initdb.d/project_def.sql
 # stop sql
 ```
