@@ -21,15 +21,19 @@ Version 1.0.0
 
 ## Installation :
 
+Vous devez avoir installé <a href="https://www.docker.com/products/docker-desktop/">docker-desktop</a> sur votre système d'exploitation avant de pouvoir utiliser ce code.
+
 Modifier le nom du projet dans le fichier « .env.example » :
 ```
 NAME_PROJECT=projectphp
 ```
 Mettre le nom du projet.
-En modifient le nom du projet, il faudra aussi modifier le modifier dans le fichier « config/config_sgbd.php », pour pouvoir se connecter au serveur de la base de donnée :
-```
-$name_project = "projectphp";
-```
+
+> [!WARNING]
+> En modifient le nom du projet, il faudra aussi modifier le modifier dans le fichier « config/config_sgbd.php », pour pouvoir se connecter au serveur de la base de donnée :
+> ```
+> $name_project = "projectphp";
+> ```
 
 Sur un terminal (pour créer le fichier « .env ») :
 ```
@@ -41,6 +45,7 @@ VALUE_HTTPD_PORT=80
 VALUE_PHPMYADMIN_PORT=8080
 VALUE_MAILHOG_DISPLAY_PORT=8020
 ```
+
 > [!NOTE]
 > => 0 pour le projet 0
 > => 1 pour le projet 1
