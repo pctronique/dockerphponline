@@ -53,6 +53,7 @@ VALUE_MAILHOG_DISPLAY_PORT=8020
 ```
 
 > [!NOTE]
+> Exemple :
 > => 0 pour le projet 0
 > 
 > => 1 pour le projet 1
@@ -60,6 +61,13 @@ VALUE_MAILHOG_DISPLAY_PORT=8020
 > VALUE_HTTPD_PORT=81
 > VALUE_PHPMYADMIN_PORT=8081
 > VALUE_MAILHOG_DISPLAY_PORT=8021
+> ```
+> 
+> => 2 pour le projet 2
+> ```
+> VALUE_HTTPD_PORT=82
+> VALUE_PHPMYADMIN_PORT=8082
+> VALUE_MAILHOG_DISPLAY_PORT=8022
 > ```
 
 Création des conteneurs :
