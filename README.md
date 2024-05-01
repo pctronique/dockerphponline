@@ -89,6 +89,8 @@ Création des conteneurs :
 ```
 $ docker compose up -d
 ```
+> [!WARNING]
+> Vous avez besoin du fichier « .env », sinon vous allez avoir des erreurs.
 
 Le code devra être placé dans le dossier « www ».
 
