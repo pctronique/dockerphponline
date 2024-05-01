@@ -21,7 +21,7 @@ Version 1.0.0
 
 ## Installation :
 
-Vous devez avoir installé <a href="https://www.docker.com/products/docker-desktop/">docker-desktop</a> sur votre système d'exploitation avant de pouvoir utiliser ce code.
+Vous devez avoir installé <a href="https://www.docker.com/products/docker-desktop/" target="_blank">docker-desktop</a> sur votre système d'exploitation avant de pouvoir utiliser ce code.
 
 Modifier le nom du projet dans le fichier « .env.example » :
 ```
