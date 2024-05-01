@@ -11,6 +11,7 @@ Version 1.0.0
         <a href="#Autres-informations">Autres informations</a>
         <ul>
             <li><a href="#Versions">Versions</a></li>
+            <li><a href="#Installer-la-dernière-version">Installer la dernière version</a></li>
             <li><a href="#Config">Config</a></li>
             <ul>
                 <li><a href="#Configurations-du-SGBD-du-site">Configurations SGBD du site</a></li>
@@ -126,11 +127,10 @@ RUN pecl install -o -f xdebug-3.3.2 && rm -rf /tmp/pear
 > zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20230831/xdebug.so
 > ```
 
-
 > [!NOTE]
 > Prendre une version fpm pour php.
 
-Installer la dernière version :
+### Installer la dernière version
 > [!WARNING]
 > À utiliser une seule fois dans la création du projet et ensuite remettre la valeur des versions que vous aurez obtenue. Ne surtout pas conserver ce format dans un projet.
 
@@ -150,7 +150,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 #xdebug.
 RUN pecl install -o -f xdebug && rm -rf /tmp/pear
 ```
-
 
 ### Config
 
