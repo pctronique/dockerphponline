@@ -56,13 +56,13 @@ RUN pecl install yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ex
 WORKDIR /tmp
 
 # Install composer  
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer  
+COPY --from=composer:2.7.4 /usr/bin/composer /usr/bin/composer  
 RUN mkdir /var/composer  
 ENV COMPOSER_HOME /var/composer  
 ENV COMPOSER_ALLOW_SUPERUSER 1 
 
 #xdebug.
-RUN pecl install -o -f xdebug && rm -rf /tmp/pear
+RUN pecl install -o -f xdebug-3.3.2 && rm -rf /tmp/pear
 
 WORKDIR /usr/local/apache2/www
 

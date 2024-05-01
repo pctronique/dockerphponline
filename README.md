@@ -33,11 +33,9 @@ Il install :
   <li>php:8.3.7RC1</li>
   <li>mariadb:10.4.18</li>
   <li>apache:2.4.59</li>
-</ul>
-<ul>
-  <li>Xdebug</li>
-  <li>mailhog</li>
-  <li>composer</li>
+  <li>Xdebug:3.3.2</li>
+  <li>mailhog:v1.0.0</li>
+  <li>composer:2.7.4</li>
 </ul>
 
 ## Installation
@@ -97,6 +95,8 @@ Le code devra être placé dans le dossier « www ».
 
 ### Versions
 
+Pour que le projet soit toujours valide, il est préférable de mettre en place des versions fixes.
+
 > [!WARNING]
 > Le faire avant de créer le fichier « .env ».
 
@@ -107,15 +107,33 @@ VALUE_MARIABD_VERSION=10.4.18-focal
 VALUE_MAILHOG_VERSION=v1.0.0
 ```
  
-pour modifier la version du php c’est dans le fichier « .docker/php/Dockerfile » :
+pour modifier la version du php, xdebug et composer, c’est dans le fichier « .docker/php/Dockerfile » :
 ```
 FROM php:8.3.7RC1-fpm
 ```
+```
+# Install composer  
+COPY --from=composer:2.7.4 /usr/bin/composer /usr/bin/composer  
+```
+```
+#xdebug.
+RUN pecl install -o -f xdebug-3.3.2 && rm -rf /tmp/pear
+```
+
+> [!WARNING]
+> En modifiant la version de xdebug, vous devrez aussi modifier le fichier « .docker/php/xdebug.ini » (no-debug-non-zts-20230831) :
+> ```
+> zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20230831/xdebug.so
+> ```
+
 
 > [!NOTE]
 > Prendre une version fpm pour php.
 
 Installer la dernière version :
+> [!WARNING]
+> À utiliser une seule fois dans la création du projet et ensuite remettre la valeur des versions que vous aurez obtenue. Ne surtout pas conserver ce format dans un projet.
+
 ```
 VALUE_HTTPD_VERSION=latest
 VALUE_MARIABD_VERSION=focal
@@ -123,6 +141,14 @@ VALUE_MAILHOG_VERSION=latest
 ```
 ```
 FROM php:fpm
+```
+```
+# Install composer  
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer  
+```
+```
+#xdebug.
+RUN pecl install -o -f xdebug && rm -rf /tmp/pear
 ```
 
 
