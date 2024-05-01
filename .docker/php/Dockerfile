@@ -11,8 +11,21 @@ RUN apt install -y libxslt-dev
 RUN apt install -y wget
 RUN apt install -y graphviz
 RUN apt install -y libzip-dev
-RUN apt install -y vim curl debconf subversion apt-transport-https apt-utils build-essential locales acl mailutils wget
-RUN apt install -y libjpeg-dev libpng-dev libmcrypt-dev unzip git
+RUN apt install -y vim
+RUN apt install -y curl
+RUN apt install -y debconf
+RUN apt install -y subversion
+RUN apt install -y apt-transport-https
+RUN apt install -y apt-utils
+RUN apt install -y build-essential
+RUN apt install -y locales
+RUN apt install -y acl
+RUN apt install -y mailutils
+RUN apt install -y wget
+RUN apt install -y libjpeg-dev
+RUN apt install -y libpng-dev
+RUN apt install -y libmcrypt-dev
+RUN apt install -y unzip
 #pour mailhog 
 RUN apt install --no-install-recommends --assume-yes --quiet ca-certificates curl git
 RUN apt install -y libc-client-dev libkrb5-dev
@@ -50,9 +63,6 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 #xdebug.
 RUN pecl install -o -f xdebug && rm -rf /tmp/pear
-RUN composer selfupdate && \
-    composer require "phpunit/phpunit:8.*.*" --prefer-source --no-interaction && \
-    ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
 
 WORKDIR /usr/local/apache2/www
 

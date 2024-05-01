@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `damp`
+-- Base de données : `project`
 --
-CREATE DATABASE IF NOT EXISTS `damp` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `damp`;
+CREATE DATABASE IF NOT EXISTS `project` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `project`;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,7 +2,7 @@
 
 require __DIR__ . "/config_sgbd.php";
 
-// creation de la ligne de connexion a placer dans PDO
+// creation de la ligne de connexion a placer dans le PDO
 $configsgbd = $type . ':host=' . $server;
 if(!empty($port) && $port !== "0") {
     $configsgbd .= ';port=' . $port;

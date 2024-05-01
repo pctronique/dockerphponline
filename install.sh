@@ -1,17 +1,17 @@
 # creation des tmp du docker
-mkdir -p projecttmp/mysql_data
-mkdir -p projecttmp/tmp
-mkdir -p projecttmp/tmp/php
-mkdir -p projecttmp/tmp/mysql
-mkdir -p projecttmp/tmp/httpd
-mkdir -p projecttmp/log
-mkdir -p projecttmp/log/php
-mkdir -p projecttmp/log/httpd
-mkdir -p projecttmp/log/xdebug
-mkdir -p projecttmp/log/mysql
+mkdir -p .dockertmp/mariadb_data
+mkdir -p .dockertmp/tmp
+mkdir -p .dockertmp/tmp/php
+mkdir -p .dockertmp/tmp/mariadb
+mkdir -p .dockertmp/tmp/httpd
+mkdir -p .dockertmp/log
+mkdir -p .dockertmp/log/php
+mkdir -p .dockertmp/log/httpd
+mkdir -p .dockertmp/log/xdebug
+mkdir -p .dockertmp/log/mariadb
 
 # modifier les droits sur les dossiers
-chmod 777 -R projecttmp
+chmod 777 -R .dockertmp
 
 # creation du fichier .env
 if [ -e .env ]

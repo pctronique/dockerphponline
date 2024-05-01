@@ -12,8 +12,8 @@ services:
         volumes:
             - ./.docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
             - ./.docker/apache/vhosts/:/usr/local/apache2/conf/vhosts
-            - ./projecttmp/tmp/httpd/:/usr/local/apache2/tmp/httpd:rw
-            - ./projecttmp/log/httpd/:/usr/local/apache2/logs:rw
+            - ./.dockertmp/tmp/httpd/:/usr/local/apache2/tmp/httpd:rw
+            - ./.dockertmp/log/httpd/:/usr/local/apache2/logs:rw
         volumes_from:
             - php
 
@@ -27,9 +27,9 @@ services:
         volumes:
             - ./www/:/usr/local/apache2/www
             - ./config/config_sgbd.php:/usr/local/apache2/www/config/config_sgbd.php:rw
-            - ./projecttmp/log/php:/usr/local/projecttmp/log/php:rw
-            - ./projecttmp/log/xdebug:/usr/local/projecttmp/log/xdebug:rw
-            - ./projecttmp/tmp/php:/usr/local/projecttmp/tmp/php:rw
+            - ./.dockertmp/log/php:/usr/local/.dockertmp/log/php:rw
+            - ./.dockertmp/log/xdebug:/usr/local/.dockertmp/log/xdebug:rw
+            - ./.dockertmp/tmp/php:/usr/local/.dockertmp/tmp/php:rw
             - ./.docker/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
             - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
@@ -42,13 +42,12 @@ services:
         restart: always
         image: mariadb:${VALUE_MARIABD_VERSION}
         volumes:
-            - ./projecttmp/log/mysql:/var/log/mysql:rw
-            - ./projecttmp/tmp/mysql:/var/tmp/mysql:rw
-            - ./projecttmp/mysql_data:/var/lib/mysql
-            - ./.docker/mysql/my.cnf:/etc/mysql/my.cnf:ro
-            - ./.docker/mysql/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
+            - ./.dockertmp/log/mariadb:/var/log/mariadb:rw
+            - ./.dockertmp/tmp/mariadb:/var/tmp/mariadb:rw
+            - ./.dockertmp/mariadb_data:/var/lib/mysql
+            - ./.docker/mariadb/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
             # start sql
-            - ./config/0001_damp.sql:/docker-entrypoint-initdb.d/0001_damp.sql
+            - ./config/0001_project.sql:/docker-entrypoint-initdb.d/0001_project.sql
             # stop sql
         environment:
             - MYSQL_ROOT_PASSWORD=secret

@@ -1,8 +1,9 @@
 <?php
+$name_project = "projectphp";
 $type = "mysql";
-$server = "dockerweb_mariadb";
+$server = $name_project . "_mariadb";
 $port = "0";
-$dbname = "";
+$dbname = "project";
 $user = "root";
 $pass = "secret";
 $prefix = "";

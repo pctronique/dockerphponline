@@ -2,4 +2,5 @@
 /.vscode
 /.env
 /projecttmp/
+/.dockertmp/
 /www/config/config_sgbd.php
