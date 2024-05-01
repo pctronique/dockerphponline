@@ -54,6 +54,7 @@ VALUE_MAILHOG_DISPLAY_PORT=8020
 
 > [!NOTE]
 > Exemple :
+> 
 > => 0 pour le projet 0
 > 
 > => 1 pour le projet 1
