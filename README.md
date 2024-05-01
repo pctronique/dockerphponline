@@ -19,7 +19,7 @@ Version 1.0.0
                 <li><a href="#Xdebug">Xdebug</a></li>
             </ul>
             <li><a href="#Les-données-de-la-base-de-données">Les données de la base de données</a></li>
-            <li><a href="#Bin-et-install.sh">Bin et install.sh</a></li>
+            <li><a href="#Docker-engine">Docker engine</a></li>
         </ul>
     </li>
   </ol>
@@ -193,6 +193,6 @@ Exporter la base de données dans le fichier « project_def.sql », le placer 
 # stop sql
 ```
 
-### Pour Linux
+### Docker engine
 
 Si vous avez installé [docker engine](https://docs.docker.com/engine/install/), vous pouvez accéder au terminal de vos conteneurs à partir du dossier « bin ».
