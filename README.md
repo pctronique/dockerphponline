@@ -67,7 +67,10 @@ Le code devra être placé dans le dossier « www ».
 
 ### Versions
 
-Possible aussi de modifier les versions dans le fichier « .env.example », le faire avant de créer le fichier « .env ».
+> [!WARNING]
+> Le faire avant de créer le fichier « .env ».
+
+Il est possible de modifier les versions des conteneurs dans le fichier « .env.example ».
 ```
 VALUE_HTTPD_VERSION=2.4.59
 VALUE_MARIABD_VERSION=10.4.18-focal
@@ -78,7 +81,9 @@ pour modifier la version du php c’est dans le fichier « .docker/php/Dockerfi
 ```
 FROM php:8.3.7RC1-fpm
 ```
-(prendre une version fpm)
+
+> [!NOTE]
+> Prendre une version fpm pour php.
 
 ### Config
 
