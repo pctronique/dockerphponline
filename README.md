@@ -122,13 +122,16 @@ Celui-ci installera une base de données (« project ») vide par défaut (pos
 # stop sql
 ```
 
+Vous pouvez entrer une base de données par défaut du projet, il suffit d'exporter la base de données sous format sql et le placer dans le fichier « docker-compose.yml ».
+
+Exemple :
+Exporter la base de données dans le fichier « project_def.sql », le placer dans « config » et faire :
+```
+# start sql
+- ./config/project_def.sql:/docker-entrypoint-initdb.d/project_def.sql
+# stop sql
+```
+
 ### Pour Linux
 
 Si vous avez installé [docker engine](https://docs.docker.com/engine/install/), vous pouvez accéder au terminal de vos conteneurs à partir du dossier « bin ».
-Avec [docker engine](https://docs.docker.com/engine/install/), il est possible d'avoir un problème de droit pour accéder au dossier de la base de données par docker, il sera préférable de faire :
-```
-$ ./install.sh
-```
-
-> [!NOTE]
-> Il va créer les dossiers avant de construire le conteneur.
