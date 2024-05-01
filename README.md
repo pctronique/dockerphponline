@@ -8,7 +8,7 @@ Version 1.0.0
         <a href="#Installation">Installation</a>
     </li>
     <li>
-        <a href="#Autres informations"># Autres informations</a>
+        <a href="#Autres-informations">Autres informations</a>
         <ul>
             <li><a href="#Versions">Versions</a></li>
             <li><a href="#Config">Config</a></li>
