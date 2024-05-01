@@ -21,7 +21,7 @@ Version 1.0.0
 
 ## Installation :
 
-Vous devez avoir installé [docker-desktop](https://www.docker.com/products/docker-desktop/"){:target="_blank" rel="noopener"} sur votre système d'exploitation avant de pouvoir utiliser ce code.
+Vous devez avoir installé [docker-desktop](https://www.docker.com/products/docker-desktop/) sur votre système d'exploitation avant de pouvoir utiliser ce code.
 
 Modifier le nom du projet dans le fichier « .env.example » :
 ```
@@ -30,7 +30,7 @@ NAME_PROJECT=projectphp
 Mettre le nom du projet.
 
 > [!WARNING]
-> En modifient le nom du projet, il faudra aussi modifier le modifier dans le fichier « config/config_sgbd.php », pour pouvoir se connecter au serveur de la base de donnée :
+> En modifiant le nom du projet, il faudra aussi le modifier dans le fichier « config/config_sgbd.php », pour pouvoir se connecter au serveur de la base de données :
 > ```
 > $name_project = "projectphp";
 > ```
@@ -39,7 +39,7 @@ Sur un terminal (pour créer le fichier « .env ») :
 ```
 $ cp .env.example .env
 ```
-Posible de modifier les ports dans le fichier « .env » (il est préférable de conserver les ports par défaut dans l’exemple).
+Possible de modifier les ports dans le fichier « .env » (il est préférable de conserver les ports par défaut dans l’exemple).
 ```
 VALUE_HTTPD_PORT=80
 VALUE_PHPMYADMIN_PORT=8080
@@ -48,6 +48,7 @@ VALUE_MAILHOG_DISPLAY_PORT=8020
 
 > [!NOTE]
 > => 0 pour le projet 0
+> 
 > => 1 pour le projet 1
 > ```
 > VALUE_HTTPD_PORT=81
@@ -60,7 +61,7 @@ Création des conteneurs :
 $ docker compose up -d
 ```
 
-Le code devra être placé dans le dossier « www »
+Le code devra être placé dans le dossier « www ».
 
 ## Autres informations
 
@@ -81,26 +82,37 @@ FROM php:8.3.7RC1-fpm
 
 ### Config
 
-Il utilise xdebug et déjàs configuré, mais il est possible de modifier la configuration dans le fichier « .docker/php/xdebug.ini »
+Les modifications de configuration de la base de données devront être effectuées dans le fichier « config/config_sgbd.php ».
+
+> [!WARNING]
+> Ne surtout pas faire les modifications dans le fichier « www/config/config_sgbd.php ».
+
+Il utilise xdebug et il est déjà configuré, mais il est possible de modifier la configuration dans le fichier « .docker/php/xdebug.ini »
 
 Le fichier « php.ini » se trouve dans « .docker/php/ ».
 Le fichier « httpd.conf » se trouve dans « .docker/apache/ ».
-Pour faire une configuration personnalisé.
-
-Les modifications de configuration de la base de données devra être fait dans le fichier « config/config_sgbd.php », surtout pas dans « www/config/config_sgbd.php ».
 
 ### Données de la base de données
 
-Le dossier « .dockertmp/mariadb_data/ » va contenir la base de données, ceci permet de ne pas perdre la base de données quand on supprime le conteneur (si on veut supprimer la base de donner, il faut supprimer le conteneur de celui-ci et ce dossier).
-Le dossier « .dockertmp » ne doit pas être mis sur le github, c’est un dossier temporaire. 
+Le dossier « .dockertmp/mariadb_data/ » va contenir la base de données, ceci permet de ne pas perdre la base de données quand on supprime le conteneur (si on veut supprimer la base de données, il faut supprimer le conteneur de celui-ci et ce dossier).
 
-Il installe une base de données « project » vide par défaut (possible de le retirer dans le fichier « docker-compose.yml »).
+> [!WARNING]
+> Le dossier « .dockertmp » ne doit pas être mis sur le github, c’est un dossier temporaire. 
+
+Celui-ci installera une base de données (« project ») vide par défaut (possible de le retirer dans le fichier « docker-compose.yml »).
 ```
 # start sql
 - ./config/0001_project.sql:/docker-entrypoint-initdb.d/0001_project.sql
 # stop sql
 ```
 
-### Bin et install.sh
+### Pour Linux
 
-(le dossier « bin » c’est seulement pour linux, pas besoin sur windows et le fichier « install.sh », c’est en cas de problème de base de données sur linux, sur les droit d’accès au dossier de la base de données.)
+Si vous avez installé [docker engine](https://docs.docker.com/engine/install/), vous pouvez accéder au terminal de vos conteneurs à partir du dossier « bin ».
+Avec [docker engine](https://docs.docker.com/engine/install/), il est possible d'avoir un problème de droit pour accéder au dossier de la base de données par docker, il sera préférable de faire :
+```
+$ ./install.sh
+```
+
+> [!NOTE]
+> Il va créer les dossiers avant de construire le conteneur.
