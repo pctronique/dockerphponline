@@ -5,9 +5,8 @@ Version 1.0.0
 <details>
   <summary>Table des matières</summary>
   <ol>
-    <li>
-        <a href="#Installation">Installation</a>
-    </li>
+    <li><a href="#Présentation">Présentation</a></li>
+    <li><a href="#Installation">Installation</a></li>
     <li>
         <a href="#Autres-informations">Autres informations</a>
         <ul>
@@ -25,7 +24,22 @@ Version 1.0.0
   </ol>
 </details>
 
-## Installation :
+## Présentation
+
+Pour créer un projet php avec docker.
+Il install :
+<ul>
+  <li>php:8.3.7RC1</li>
+  <li>mariadb:10.4.18</li>
+  <li>apache:2.4.59</li>
+</ul>
+<ul>
+  <li>Xdebug</li>
+  <li>mailhog</li>
+  <li>composer</li>
+</ul>
+
+## Installation
 
 Vous devez avoir installé [docker-desktop](https://www.docker.com/products/docker-desktop/) sur votre système d'exploitation avant de pouvoir utiliser ce code.
 
@@ -99,6 +113,17 @@ FROM php:8.3.7RC1-fpm
 
 > [!NOTE]
 > Prendre une version fpm pour php.
+
+Installer la dernière version :
+```
+VALUE_HTTPD_VERSION=latest
+VALUE_MARIABD_VERSION=focal
+VALUE_MAILHOG_VERSION=latest
+```
+```
+FROM php:fpm
+```
+
 
 ### Config
 
