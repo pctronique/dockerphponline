@@ -212,6 +212,9 @@ Exporter la base de données dans le fichier « project_def.sql », le placer 
 # stop sql
 ```
 
+> [!NOTE]
+> Il est préférable d'entrer une base de données par défaut, pour pouvoir avoir un site directement opérationnel après l'installation des conteneurs et pouvoir directement repartir sur le code sans devoir tout reconfigurer. Quand on revient des années après sur le projet, on doit juste installer les conteneurs et on a directement le site sans aucune autre modification à faire, on peut directement coder.
+
 ### Docker engine
 
 Si vous avez installé [docker engine](https://docs.docker.com/engine/install/), vous pouvez accéder au terminal de vos conteneurs à partir du dossier « bin ».
