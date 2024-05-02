@@ -1,6 +1,6 @@
 # dockerphponline
 Par [pctronique](https://pctronique.fr/) <br />
-Version 1.0.0
+Version 1.1.0
 
 <details>
   <summary>Table des matières</summary>
@@ -66,10 +66,7 @@ NAME_PROJECT=projectphp
 Mettre le nom du projet.
 
 > [!WARNING]
-> En modifiant le nom du projet, il faudra aussi le modifier dans le fichier « config/config_sgbd.php », pour pouvoir se connecter au serveur de la base de données :
-> ```
-> $name_project = "projectphp";
-> ```
+> Le faire avant de créer le fichier « .env ».
 
 ### Le fichier .env
 
