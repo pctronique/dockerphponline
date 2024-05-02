@@ -10,8 +10,9 @@ Version 1.0.0
         <a href="#Installation">Installation</a>
         <ul>
             <li><a href="#Le-nom-du-projet">Le nom du projet</a></li>
-            <li><a href="#Le-fichier-.env">Le fichier .env</a></li>
+            <li><a href="#Le-fichier-env">Le fichier .env</a></li>
             <li><a href="#Création-des-conteneurs">Création des conteneurs</a></li>
+            <li><a href="#Où-placer-le-code">Où placer le code</a></li>
         </ul>
     </li>
     <li>
@@ -105,6 +106,8 @@ $ docker compose up -d
 ```
 > [!WARNING]
 > Vous avez besoin du fichier « .env », sinon vous allez avoir des erreurs.
+
+### Où placer le code
 
 Le code devra être placé dans le dossier « www ».
 
