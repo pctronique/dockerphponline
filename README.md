@@ -135,22 +135,12 @@ Pour que le projet soit toujours valide, il est préférable de mettre en place 
 Il est possible de modifier les versions des conteneurs dans le fichier « .env.example ».
 ```
 VALUE_HTTPD_VERSION=2.4.59
+VALUE_PHP_VERSION=8.3.7RC1-fpm
+VALUE_COMPOSER_VERSION=2.7.4
+VALUE_XDEBUG_VERSION=-3.3.2
 VALUE_MARIABD_VERSION=10.4.18-focal
 VALUE_MAILHOG_VERSION=v1.0.0
 VALUE_PHPMYADMIN_VERSION=5.2.1
-```
- 
-pour modifier la version du php, xdebug et composer, c’est dans le fichier « .docker/php/Dockerfile » :
-```
-FROM php:8.3.7RC1-fpm
-```
-```
-# Install composer  
-COPY --from=composer:2.7.4 /usr/bin/composer /usr/bin/composer  
-```
-```
-#xdebug.
-RUN pecl install -o -f xdebug-3.3.2 && rm -rf /tmp/pear
 ```
 
 > [!WARNING]
@@ -168,20 +158,12 @@ RUN pecl install -o -f xdebug-3.3.2 && rm -rf /tmp/pear
 
 ```
 VALUE_HTTPD_VERSION=latest
+VALUE_PHP_VERSION=fpm
+VALUE_COMPOSER_VERSION=latest
+VALUE_XDEBUG_VERSION=
 VALUE_MARIABD_VERSION=focal
 VALUE_MAILHOG_VERSION=latest
 VALUE_PHPMYADMIN_VERSION=latest
-```
-```
-FROM php:fpm
-```
-```
-# Install composer  
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer  
-```
-```
-#xdebug.
-RUN pecl install -o -f xdebug && rm -rf /tmp/pear
 ```
 
 ### Config
