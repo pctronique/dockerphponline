@@ -74,7 +74,16 @@ Sur un terminal (pour créer le fichier « .env ») :
 ```
 $ cp .env.example .env
 ```
-Possible de modifier les ports dans le fichier « .env » (il est préférable de conserver les ports par défaut dans l’exemple).
+
+> [!NOTE]
+> Si vous voulez envoyer le fichier « .env » sur le git, vous devrez modifier le fichier « .gitignore ».
+> 
+> Supprimer la ligne :
+> ```
+> /.env
+> ```
+
+Il est possible de modifier les ports dans le fichier « .env » (il est préférable de conserver les ports par défaut dans l’exemple).
 ```
 VALUE_HTTPD_PORT=80
 VALUE_PHPMYADMIN_PORT=8080
