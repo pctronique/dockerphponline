@@ -6,7 +6,14 @@ Version 1.0.0
   <summary>Table des matières</summary>
   <ol>
     <li><a href="#Présentation">Présentation</a></li>
-    <li><a href="#Installation">Installation</a></li>
+    <li>
+        <a href="#Installation">Installation</a>
+        <ul>
+            <li><a href="#Le-nom-du-projet">Le nom du projet</a></li>
+            <li><a href="#Le-fichier-.env">Le fichier .env</a></li>
+            <li><a href="#Création-des-conteneurs">Création des conteneurs</a></li>
+        </ul>
+    </li>
     <li>
         <a href="#Autres-informations">Autres informations</a>
         <ul>
@@ -43,6 +50,8 @@ Les versions :
 
 Vous devez avoir installé [docker-desktop](https://www.docker.com/products/docker-desktop/) sur votre système d'exploitation avant de pouvoir utiliser ce code.
 
+### Le nom du projet
+
 Modifier le nom du projet dans le fichier « .env.example » :
 ```
 NAME_PROJECT=projectphp
@@ -54,6 +63,8 @@ Mettre le nom du projet.
 > ```
 > $name_project = "projectphp";
 > ```
+
+### Le fichier .env
 
 Sur un terminal (pour créer le fichier « .env ») :
 ```
@@ -87,7 +98,8 @@ VALUE_MAILHOG_DISPLAY_PORT=8020
 > VALUE_MAILHOG_DISPLAY_PORT=8022
 > ```
 
-Création des conteneurs :
+### Création des conteneurs
+
 ```
 $ docker compose up -d
 ```
