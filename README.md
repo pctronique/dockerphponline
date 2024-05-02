@@ -48,6 +48,11 @@ Les versions :
   <li>composer:2.7.4</li>
 </ul>
 
+> [!NOTE]
+> Ce code doit être mis dans votre projet git et devra être transmis dans le git (sans le fichier « README.md » pour pas écraser le vôtre).
+> 
+> Il fera partie du projet. Et le faire pour chaque projet php.
+
 ## Installation
 
 Vous devez avoir installé [docker-desktop](https://www.docker.com/products/docker-desktop/) sur votre système d'exploitation avant de pouvoir utiliser ce code.
