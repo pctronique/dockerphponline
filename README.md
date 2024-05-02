@@ -49,7 +49,7 @@ Les versions :
 </ul>
 
 > [!NOTE]
-> Ce code doit être mis dans votre projet git et devra être transmis dans le git (sans le fichier « README.md » pour pas écraser le vôtre).
+> Ce code doit être mis dans votre projet git et devra être transmis sur le git (sans le fichier « README.md » pour pas écraser le vôtre).
 > 
 > Il fera partie du projet. Et le faire pour chaque projet php.
 
