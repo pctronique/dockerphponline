@@ -41,6 +41,7 @@ Les versions :
 <ul>
   <li>php:8.3.7RC1</li>
   <li>mariadb:10.4.18</li>
+  <li>phpmyadmin:5.2.1</li>
   <li>apache:2.4.59</li>
   <li>Xdebug:3.3.2</li>
   <li>mailhog:v1.0.0</li>
@@ -75,7 +76,7 @@ Possible de modifier les ports dans le fichier « .env » (il est préférable
 ```
 VALUE_HTTPD_PORT=80
 VALUE_PHPMYADMIN_PORT=8080
-VALUE_MAILHOG_DISPLAY_PORT=8020
+VALUE_MAILHOG_PORT=8020
 ```
 
 > [!NOTE]
@@ -89,14 +90,14 @@ VALUE_MAILHOG_DISPLAY_PORT=8020
 > ```
 > VALUE_HTTPD_PORT=81
 > VALUE_PHPMYADMIN_PORT=8081
-> VALUE_MAILHOG_DISPLAY_PORT=8021
+> VALUE_MAILHOG_PORT=8021
 > ```
 > 
 > => 2 pour le projet 2
 > ```
 > VALUE_HTTPD_PORT=82
 > VALUE_PHPMYADMIN_PORT=8082
-> VALUE_MAILHOG_DISPLAY_PORT=8022
+> VALUE_MAILHOG_PORT=8022
 > ```
 
 ### Création des conteneurs
@@ -125,6 +126,7 @@ Il est possible de modifier les versions des conteneurs dans le fichier « .env
 VALUE_HTTPD_VERSION=2.4.59
 VALUE_MARIABD_VERSION=10.4.18-focal
 VALUE_MAILHOG_VERSION=v1.0.0
+VALUE_PHPMYADMIN_VERSION=5.2.1
 ```
  
 pour modifier la version du php, xdebug et composer, c’est dans le fichier « .docker/php/Dockerfile » :
@@ -157,6 +159,7 @@ RUN pecl install -o -f xdebug-3.3.2 && rm -rf /tmp/pear
 VALUE_HTTPD_VERSION=latest
 VALUE_MARIABD_VERSION=focal
 VALUE_MAILHOG_VERSION=latest
+VALUE_PHPMYADMIN_VERSION=latest
 ```
 ```
 FROM php:fpm
