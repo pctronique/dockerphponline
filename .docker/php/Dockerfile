@@ -1,9 +1,15 @@
+# variable environnement
 ARG VALUE_PHP_VERSION
-
-FROM php:${VALUE_PHP_VERSION}
-
+ARG DEF_PHP_VERSION=${VALUE_PHP_VERSION}
 ARG VALUE_COMPOSER_VERSION
-ENV DEF_COMPOSER_VERSION=${VALUE_COMPOSER_VERSION}
+ARG DEF_COMPOSER_VERSION=${VALUE_COMPOSER_VERSION}
+# config install composer
+FROM composer:${DEF_COMPOSER_VERSION} AS compvers
+
+# config install php
+FROM php:${DEF_PHP_VERSION}
+
+# variable version (environnement)
 ARG VALUE_XDEBUG_VERSION
 ENV DEF_XDEBUG_VERSION=${VALUE_XDEBUG_VERSION}
 ARG VALUE_GOLANG_VERSION
@@ -12,6 +18,7 @@ ARG GOLANG_VERSION="https://storage.googleapis.com/golang/go${DEF_GOLANG_VERSION
 ENV XDEBUG_VERSION=${DEF_XDEBUG_VERSION:+"xdebug-${DEF_XDEBUG_VERSION}"}
 ENV XDEBUG_VERSION=${XDEBUG_VERSION:-'xdebug'}
 
+# install package
 RUN set -ex
 RUN apt update
 RUN apt upgrade -y  
@@ -69,12 +76,12 @@ RUN pecl install yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ex
 WORKDIR /tmp
 
 # Install composer  
-COPY --from=composer /usr/bin/composer /usr/bin/composer  
+COPY --from=compvers /usr/bin/composer /usr/bin/composer  
 RUN mkdir /var/composer  
 ENV COMPOSER_HOME /var/composer  
 ENV COMPOSER_ALLOW_SUPERUSER 1 
 
-#xdebug.
+# xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
 
 WORKDIR /usr/local/apache2/www

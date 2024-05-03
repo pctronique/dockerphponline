@@ -137,20 +137,25 @@ Il est possible de modifier les versions des conteneurs dans le fichier « .env
 VALUE_HTTPD_VERSION=2.4.59
 VALUE_PHP_VERSION=8.3.7RC1-fpm
 VALUE_COMPOSER_VERSION=2.7.4
-VALUE_XDEBUG_VERSION=-3.3.2
+VALUE_XDEBUG_VERSION=3.3.2
 VALUE_MARIABD_VERSION=10.4.18-focal
 VALUE_MAILHOG_VERSION=v1.0.0
 VALUE_PHPMYADMIN_VERSION=5.2.1
 ```
+
+> [!NOTE]
+> Prendre une version fpm pour php.
 
 > [!WARNING]
 > En modifiant la version de xdebug, vous devrez aussi modifier le fichier « .docker/php/xdebug.ini » (no-debug-non-zts-20230831) :
 > ```
 > zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20230831/xdebug.so
 > ```
-
-> [!NOTE]
-> Prendre une version fpm pour php.
+> Pour modifier le fichier, il faudra créer le conteneur sans aucune modification et aller sur le terminal du php pour entrer la commande :
+> ```
+> $ ls /usr/local/lib/php/extensions/
+> ```
+> Vous obtiendrez la valeur à mettre dans le fichier.
 
 ### Installer la dernière version
 > [!WARNING]
