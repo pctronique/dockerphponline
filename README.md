@@ -76,12 +76,15 @@ $ cp .env.example .env
 ```
 
 > [!NOTE]
-> Si vous voulez envoyer le fichier « .env » sur le git, vous devrez modifier le fichier « .gitignore ».
+> Si vous voulez envoyer le fichier « .env » sur le git, vous devrez modifier le fichier « .gitignore ». Mais je le déconseille fortement pour un travail de groupe.
 > 
 > Supprimer la ligne :
 > ```
 > /.env
 > ```
+
+> [!WARNING]
+> Il est préférable de ne pas envoyer ce fichier sur le git, l'un des collègues du projet peut avoir un des ports déjà utilisé et devra le modifier. Ceci changera pour tout le groupe si vous l'avez mis sur le git.
 
 Il est possible de modifier les ports dans le fichier « .env » (il est préférable de conserver les ports par défaut dans l’exemple).
 ```
@@ -155,7 +158,7 @@ VALUE_PHPMYADMIN_VERSION=5.2.1
 > ```
 > $ ls /usr/local/lib/php/extensions/
 > ```
-> Vous obtiendrez la valeur à mettre dans le fichier.
+> Vous obtiendrez la valeur à mettre dans le fichier. Redémarrer le conteneur php.
 
 ### Installer la dernière version
 > [!WARNING]
