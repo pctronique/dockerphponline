@@ -37,6 +37,8 @@ Version 1.1.0
 
 Pour créer un projet php avec docker.
 
+Pour Windows, Linux et Mac.
+
 Les versions :
 <ul>
   <li>php:8.3.7RC1</li>
