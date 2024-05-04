@@ -32,9 +32,9 @@ services:
                 - VALUE_GOLANG_VERSION=1.11.8
         volumes:
             - ./www/:/usr/local/apache2/www
-            - ./config/config_sgbd.php:/usr/local/apache2/www/config/config_sgbd.php:rw
-            - ./config/filedotenv.php:/usr/local/apache2/www/config/filedotenv.php:rw
-            - ./.env:/usr/local/apache2/www/config/.env:rw
+            - ./config/config_sgbd.php:/usr/local/apache2/www/${FOLDER_CONFIG}/config_sgbd.php:rw
+            - ./config/filedotenv.php:/usr/local/apache2/www/${FOLDER_CONFIG}/filedotenv.php:rw
+            - ./.env:/usr/local/apache2/www/${FOLDER_CONFIG}/.env:rw
             - ./.dockertmp/log/php:/usr/local/.dockertmp/log/php:rw
             - ./.dockertmp/log/xdebug:/usr/local/.dockertmp/log/xdebug:rw
             - ./.dockertmp/tmp/php:/usr/local/.dockertmp/tmp/php:rw

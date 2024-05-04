@@ -27,6 +27,7 @@ Version 1.1.0
                 <li><a href="#Xdebug">Xdebug</a></li>
             </ul>
             <li><a href="#Les-données-de-la-base-de-données">Les données de la base de données</a></li>
+            <li><a href="#Dossier-config-dans-www">Dossier config dans www</a></li>
             <li><a href="#Docker-engine">Docker engine</a></li>
         </ul>
     </li>
@@ -184,6 +185,17 @@ Les modifications de configuration de la base de données devront être effectu�
 > [!WARNING]
 > Ne surtout pas faire les modifications dans le fichier « www/config/config_sgbd.php ».
 
+Vous pouvez changer le nom de la base de données dans le fichier « config/config_sgbd.php » :
+```
+$dbname = "project";
+```
+
+Le fichier « www/config/connexionsgbd.php » se connecte à base de données avec la classe PDO de php :
+```
+$sgbd = new PDO($configsgbd, $user, $pass);
+```
+Vous pouvez le modifier si besoin.
+
 #### php.ini et httpd.conf
 <ul>
   <li>Le fichier « php.ini » se trouve dans « .docker/php/ ».</li>
@@ -220,6 +232,40 @@ Exporter la base de données dans le fichier « project_def.sql », le placer 
 
 > [!NOTE]
 > Il est préférable d'entrer une base de données par défaut, pour pouvoir avoir un site directement opérationnel après l'installation des conteneurs et pouvoir directement repartir sur le code sans devoir tout reconfigurer. Quand on revient des années après sur le projet, on doit juste installer les conteneurs et on a directement le site sans aucune autre modification à faire, on peut directement coder.
+
+### Dossier config dans www
+
+Vous pouvez déplacer le dossier « config » du dossier « www », mais il doit rester dans ce dossier.
+Par exemple le placer dans « src/config » (« www/src/config »).
+
+> [!NOTE]
+> Ceci concerne seulement le dossier « config » qui se trouve dans le dossier « www ».
+
+Remplacer la ligne dans le fichier « .env.example » :
+```
+FOLDER_CONFIG=config
+```
+Par le nouveau chemin :
+```
+FOLDER_CONFIG=src/config
+```
+
+Pas oublier de modifier aussi dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
+```
+/www/config/config_sgbd.php
+/www/config/filedotenv.php
+/www/config/.env
+```
+Par le nouveau chemin :
+```
+/www/src/config/config_sgbd.php
+/www/src/config/filedotenv.php
+/www/src/config/.env
+```
+
+> [!WARNING]
+> Le faire avant de créer le fichier env et de construire les conteneurs.
+> Sinon, supprimer les containers et le fichier env ant de modifier l'emplacement du dossier.
 
 ### Docker engine
 
