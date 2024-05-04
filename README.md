@@ -250,7 +250,7 @@ Par le nouveau chemin :
 FOLDER_CONFIG=src/config
 ```
 
-Pas oublier de modifier aussi dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
+Pas oublier de le modifier dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
 ```
 /www/config/config_sgbd.php
 /www/config/filedotenv.php
@@ -264,8 +264,7 @@ Par le nouveau chemin :
 ```
 
 > [!WARNING]
-> Le faire avant de créer le fichier env et de construire les conteneurs.
-> Sinon, supprimer les containers et le fichier env ant de modifier l'emplacement du dossier.
+> Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
 
 ### Docker engine
 
