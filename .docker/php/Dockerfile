@@ -83,6 +83,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
+COPY xdebug_extends.sh /tmp/
+RUN /tmp/xdebug_extends.sh
 
 WORKDIR /usr/local/apache2/www
 

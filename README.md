@@ -152,17 +152,6 @@ VALUE_PHPMYADMIN_VERSION=5.2.1
 > [!NOTE]
 > Prendre une version fpm pour php.
 
-> [!WARNING]
-> En modifiant la version de xdebug, vous devrez aussi modifier le fichier « .docker/php/xdebug.ini » (no-debug-non-zts-20230831) :
-> ```
-> zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20230831/xdebug.so
-> ```
-> Pour modifier le fichier, il faudra créer le conteneur sans aucune modification et aller sur le terminal du php pour entrer la commande :
-> ```
-> $ ls /usr/local/lib/php/extensions/
-> ```
-> Vous obtiendrez la valeur à mettre dans le fichier. Redémarrer le conteneur php.
-
 ### Installer la dernière version
 > [!WARNING]
 > À utiliser une seule fois dans la création du projet et ensuite remettre la valeur des versions que vous aurez obtenue. Ne surtout pas conserver ce format dans un projet.
@@ -203,6 +192,7 @@ Vous pouvez le modifier si besoin.
 </ul>
 
 #### Xdebug
+
 Il utilise xdebug et il est déjà configuré, mais il est possible de modifier la configuration dans le fichier « .docker/php/xdebug.ini »
 
 ### Les données de la base de données
