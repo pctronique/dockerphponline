@@ -34,6 +34,7 @@ services:
             - ./www/:/usr/local/apache2/www
             - ./config/config_sgbd.php:/usr/local/apache2/www/${FOLDER_CONFIG}/config_sgbd.php:rw
             - ./config/filedotenv.php:/usr/local/apache2/www/${FOLDER_CONFIG}/filedotenv.php:rw
+            - ./config/crontab:/etc/crontab:rw
             - ./.env:/usr/local/apache2/www/${FOLDER_CONFIG}/.env:rw
             - ./.dockertmp/log/php:/usr/local/.dockertmp/log/php:rw
             - ./.dockertmp/log/xdebug:/usr/local/.dockertmp/log/xdebug:rw

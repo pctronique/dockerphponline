@@ -45,6 +45,7 @@ RUN apt install -y libjpeg-dev
 RUN apt install -y libpng-dev
 RUN apt install -y libmcrypt-dev
 RUN apt install -y unzip
+RUN apt install -y cron
 #pour mailhog 
 RUN apt install --no-install-recommends --assume-yes --quiet ca-certificates curl git
 RUN apt install -y libc-client-dev libkrb5-dev
