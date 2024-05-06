@@ -28,7 +28,6 @@ Version 1.1.0
             </ul>
             <li><a href="#Les-données-de-la-base-de-données">Les données de la base de données</a></li>
             <li><a href="#Dossier-config-dans-www">Dossier config dans www</a></li>
-            <li><a href="#Docker-engine">Docker engine</a></li>
         </ul>
     </li>
   </ol>
@@ -255,7 +254,3 @@ Par le nouveau chemin :
 
 > [!WARNING]
 > Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
-
-### Docker engine
-
-Si vous avez installé [docker engine](https://docs.docker.com/engine/install/), vous pouvez accéder au terminal de vos conteneurs à partir du dossier « bin ».
