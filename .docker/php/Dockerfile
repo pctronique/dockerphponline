@@ -82,10 +82,26 @@ RUN mkdir /var/composer
 ENV COMPOSER_HOME /var/composer  
 ENV COMPOSER_ALLOW_SUPERUSER 1 
 
+RUN mkdir -p /var/docker/php
+RUN mkdir -p /var/log/docker/php
+RUN mkdir -p /var/log/docker/xdebug
+RUN mkdir -p /var/tmp/docker/php
+
+COPY importdata.sh /var/docker/php/
+COPY importall.sh /var/docker/php/
+RUN chmod +x /var/docker/php/importdata.sh
+RUN chmod +x /var/docker/php/importall.sh
+RUN /var/docker/php/importall.sh &
+
+COPY test.sh /var/docker/php/
+RUN chmod +x /var/docker/php/test.sh
+RUN /var/docker/php/test.sh
+
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
-COPY xdebug_extends.sh /tmp/
-RUN /tmp/xdebug_extends.sh
+COPY xdebug_extends.sh /var/docker/php/
+RUN chmod +x /var/docker/php/xdebug_extends.sh
+RUN /var/docker/php/xdebug_extends.sh
 
 WORKDIR /usr/local/apache2/www
 
