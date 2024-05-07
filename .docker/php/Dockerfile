@@ -70,6 +70,8 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap
 
+RUN groupadd docker
+
 # Install YAML extension
 RUN pecl install yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini
     
@@ -86,22 +88,20 @@ RUN mkdir -p /var/docker/php
 RUN mkdir -p /var/log/docker/php
 RUN mkdir -p /var/log/docker/xdebug
 RUN mkdir -p /var/tmp/docker/php
-
-COPY importdata.sh /var/docker/php/
-COPY importall.sh /var/docker/php/
-RUN chmod +x /var/docker/php/importdata.sh
-RUN chmod +x /var/docker/php/importall.sh
-RUN /var/docker/php/importall.sh &
-
-COPY test.sh /var/docker/php/
-RUN chmod +x /var/docker/php/test.sh
-RUN /var/docker/php/test.sh
+RUN mkdir -p /var/spool/cron/crontabs
 
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
-COPY xdebug_extends.sh /var/docker/php/
+COPY init/xdebug_extends.sh /var/docker/php/
 RUN chmod +x /var/docker/php/xdebug_extends.sh
 RUN /var/docker/php/xdebug_extends.sh
+
+COPY init/importdata.sh /var/docker/php/
+COPY init/docker-data-entrypoint.sh /var/docker/php/
+RUN chmod +x /var/docker/php/importdata.sh
+RUN chmod +x /var/docker/php/docker-data-entrypoint.sh
+
+ENTRYPOINT ["/var/docker/php/docker-data-entrypoint.sh"]
 
 WORKDIR /usr/local/apache2/www
 
