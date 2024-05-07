@@ -36,7 +36,7 @@ services:
             - ./config/config_sgbd.php:/usr/local/apache2/www/${FOLDER_CONFIG}/config_sgbd.php:rw
             - ./config/filedotenv.php:/usr/local/apache2/www/${FOLDER_CONFIG}/filedotenv.php:rw
             - ./config/crontab:/etc/crontab:rw
-            - ./config/root:/var/spool/cron/crontabs/root:rw
+            #- ./config/root:/var/spool/cron/crontabs/root:rw
             - ./config/data:/var/docker/php/data
             - ./.docker/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
             - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
