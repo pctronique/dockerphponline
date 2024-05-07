@@ -46,7 +46,7 @@ services:
             - ./.dockertmp/tmp/php:/var/tmp/docker/php:rw
             - ./.env:/var/docker/php/.env:rw
         environment:
-            - TZ=Europe/Paris
+            - TZ=${VALUE_TIMEZONES}
             
 ###########################
 # Setup the Database (MariaDB) container
@@ -57,13 +57,12 @@ services:
         image: mariadb:${VALUE_MARIABD_VERSION}
         volumes:
             - ./.docker/mariadb/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
-            #- ./.docker/mariadb/0000_phpmyadmin.sql:/docker-entrypoint-initdb.d/0000_phpmyadmin.sql
             - ./config/sgbd_data:/docker-entrypoint-initdb.d/:rw
             - ./.dockertmp/log/mariadb:/var/log/mariadb:rw
             - ./.dockertmp/tmp/mariadb:/var/tmp/mariadb:rw
             - ./.dockertmp/mariadb_data:/var/lib/mysql
         environment:
-            - TZ=Europe/Paris
+            - TZ=${VALUE_TIMEZONES}
             - MYSQL_DATABASE=${SGBD_DATABASE}
             - MYSQL_ROOT_PASSWORD=${SGBD_PASSWORD}
             #- MYSQL_USER=${SGBD_USER}
