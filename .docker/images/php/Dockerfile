@@ -92,16 +92,16 @@ RUN mkdir -p /var/spool/cron/crontabs
 
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
-COPY init/xdebug_extends.sh /var/docker/php/
+COPY xdebug_extends.sh /var/docker/php/
 RUN chmod +x /var/docker/php/xdebug_extends.sh
 RUN /var/docker/php/xdebug_extends.sh
 
-COPY init/importdata.sh /var/docker/php/
-COPY init/docker-data-entrypoint.sh /var/docker/php/
+COPY importdata.sh /var/docker/php/
+COPY docker-data-entrypoint.sh /var/docker/php/
 RUN chmod +x /var/docker/php/importdata.sh
 RUN chmod +x /var/docker/php/docker-data-entrypoint.sh
 
-ENTRYPOINT ["/var/docker/php/docker-data-entrypoint.sh"]
+ENTRYPOINT ["/var/docker/php/docker-data-entrypoint.sh", "docker-php-entrypoint"]
 
 WORKDIR /usr/local/apache2/www
 
