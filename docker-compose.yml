@@ -84,9 +84,19 @@ services:
 # Setup the mailhog container
 ###########################
     mailhog:
+        build:
+            context: .docker/images/mailhog
+            args:
+                - VALUE_MAILHOG_VERSION=${VALUE_MAILHOG_VERSION}
         container_name: ${NAME_PROJECT}_mailhog
         restart: always
-        image: mailhog/mailhog:${VALUE_MAILHOG_VERSION}
+        tty: false
+        privileged: false
+        volumes:
+            - ./.dockertmp/mailhog:/mailhog
+        environment:
+            - MH_STORAGE=maildir
+            - MH_MAILDIR_PATH=/mailhog
         ports:
             - ${VALUE_MAILHOG_PORT}:8025
             
