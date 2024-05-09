@@ -35,16 +35,13 @@ services:
             - ./.env:/usr/local/apache2/www/${FOLDER_CONFIG}/.env:rw
             - ./config/config_sgbd.php:/usr/local/apache2/www/${FOLDER_CONFIG}/config_sgbd.php:rw
             - ./config/filedotenv.php:/usr/local/apache2/www/${FOLDER_CONFIG}/filedotenv.php:rw
-            - ./config/crontab:/etc/crontab:rw
-            #- ./config/root:/var/spool/cron/crontabs/root:rw
-            - ./config/data:/var/docker/php/data
+            - ./config/data:/docker-entrypoint-initdata.d:rw
             - ./.docker/containers/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
             - ./.docker/containers/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./.docker/containers/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
             - ./.dockertmp/log/php:/var/log/docker/php:rw
             - ./.dockertmp/log/xdebug:/var/log/docker/xdebug:rw
             - ./.dockertmp/tmp/php:/var/tmp/docker/php:rw
-            - ./.env:/var/docker/php/.env:rw
         environment:
             - TZ=${VALUE_TIMEZONES}
             
@@ -65,9 +62,6 @@ services:
             - TZ=${VALUE_TIMEZONES}
             - MYSQL_DATABASE=${SGBD_DATABASE}
             - MYSQL_ROOT_PASSWORD=${SGBD_PASSWORD}
-            #- MYSQL_USER=${SGBD_USER}
-            #- MYSQL_LOCALHOST_USER=${NAME_PROJECT}_mariadb
-            #- MYSQL_PASSWORD=${SGBD_PASSWORD}
             
 ###########################
 # Setup the PhpMyAdmin container

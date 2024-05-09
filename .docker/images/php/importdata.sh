@@ -1,22 +1,31 @@
 #!/bin/bash
-while read line  
-do   
-    line="$line" | xargs
-    if [[ ! $line =~ ^# ]];
-    then
-        if [ ! -z "$line" ]
-        then
-            value=${line#*=}
-            name=${line%=*}
-            export $name="$value"
-        fi
-    fi
-done < /var/docker/php/.env
 
-if [ -d "/var/docker/php/data" ]; then
-    if [ ! -d "/usr/local/apache2/www/$FOLDER_DATA" ]; then
-        mkdir -p "/usr/local/apache2/www/$FOLDER_DATA"
-        cp -r /var/docker/php/data/* "/usr/local/apache2/www/$FOLDER_DATA/"
+if [ -z ${PHP_FOLDER_PROJECT} ]
+then
+    PHP_FOLDER_PROJECT=/usr/local/apache2/www
+fi
+
+if [ -z ${PHP_FOLDER_LOG} ]
+then
+    PHP_FOLDER_LOG=/var/log/docker/php/
+fi
+
+if [ -z ${PHP_FOLDER_DATA} ]
+then
+    PHP_FOLDER_DATA=data
+fi
+
+if [ -z ${PHP_FOLDER_INIT_DATA} ]
+then
+    PHP_FOLDER_INIT_DATA=/docker-entrypoint-initdata.d/
+fi
+
+if [ -d "${PHP_FOLDER_INIT_DATA}" ]; then
+    if [ ! -d "${PHP_FOLDER_PROJECT}${PHP_FOLDER_DATA}" ]; then
+        if [ ! -z "${PHP_FOLDER_INIT_DATA}" ]; then
+            mkdir -p "${PHP_FOLDER_PROJECT}${PHP_FOLDER_DATA}" 2>> ${PHP_FOLDER_LOG}installdata.log
+            cp -r ${PHP_FOLDER_INIT_DATA}* "${PHP_FOLDER_PROJECT}${PHP_FOLDER_DATA}/" 2>> ${PHP_FOLDER_LOG}installdata.log
+        fi
     fi
 fi
 

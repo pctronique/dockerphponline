@@ -1,0 +1,6 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# must be ended with a new line "LF" (Unix) and not "CRLF" (Windows)
+
+# An empty line is required at the end of this file for a valid cron file.

@@ -18,6 +18,13 @@ ARG GOLANG_VERSION="https://storage.googleapis.com/golang/go${DEF_GOLANG_VERSION
 ENV XDEBUG_VERSION=${DEF_XDEBUG_VERSION:+"xdebug-${DEF_XDEBUG_VERSION}"}
 ENV XDEBUG_VERSION=${XDEBUG_VERSION:-'xdebug'}
 
+ENV PHP_FOLDER_PROJECT="/usr/local/apache2/www"
+ENV PHP_FOLDER_LOG="/var/log/docker/php/"
+ENV PHP_FOLDER_LOG_XDEBUG="/var/log/docker/xdebug/"
+ENV PHP_FOLDER_TMP="/var/tmp/docker/php/"
+ENV PHP_FOLDER_INIT="/var/docker/php/"
+ENV PHP_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
+
 # install package
 RUN set -ex
 RUN apt update
@@ -84,25 +91,30 @@ RUN mkdir /var/composer
 ENV COMPOSER_HOME /var/composer  
 ENV COMPOSER_ALLOW_SUPERUSER 1 
 
-RUN mkdir -p /var/docker/php
-RUN mkdir -p /var/log/docker/php
-RUN mkdir -p /var/log/docker/xdebug
-RUN mkdir -p /var/tmp/docker/php
-RUN mkdir -p /var/spool/cron/crontabs
+RUN mkdir -p ${PHP_FOLDER_PROJECT}
+RUN mkdir -p ${PHP_FOLDER_INIT}
+RUN mkdir -p ${PHP_FOLDER_LOG}
+RUN mkdir -p ${PHP_FOLDER_LOG_XDEBUG}
+RUN mkdir -p ${PHP_FOLDER_INIT}
+RUN mkdir -p ${PHP_FOLDER_INIT_DATA}
+
+COPY dockercron /etc/cron.d/dockercron
+RUN crontab /etc/cron.d/dockercron
 
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
-COPY xdebug_extends.sh /var/docker/php/
-RUN chmod +x /var/docker/php/xdebug_extends.sh
-RUN /var/docker/php/xdebug_extends.sh
+COPY xdebug_extends.sh ${PHP_FOLDER_INIT}
+RUN chmod +x ${PHP_FOLDER_INIT}xdebug_extends.sh
+RUN ${PHP_FOLDER_INIT}xdebug_extends.sh
 
-COPY importdata.sh /var/docker/php/
-COPY docker-data-entrypoint.sh /var/docker/php/
-RUN chmod +x /var/docker/php/importdata.sh
-RUN chmod +x /var/docker/php/docker-data-entrypoint.sh
+COPY importdata.sh ${PHP_FOLDER_INIT}
+RUN chmod +x ${PHP_FOLDER_INIT}importdata.sh
 
-ENTRYPOINT ["/var/docker/php/docker-data-entrypoint.sh", "docker-php-entrypoint"]
+COPY docker-data-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-data-entrypoint.sh
 
-WORKDIR /usr/local/apache2/www
+ENTRYPOINT ["docker-data-entrypoint.sh", "docker-php-entrypoint"]
+
+WORKDIR ${PHP_FOLDER_PROJECT}
 
 CMD ["php-fpm"]
