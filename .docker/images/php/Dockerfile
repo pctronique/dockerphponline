@@ -1,8 +1,8 @@
 # variable environnement
 ARG VALUE_PHP_VERSION
-ARG DEF_PHP_VERSION=${VALUE_PHP_VERSION}
+ARG DEF_PHP_VERSION=${VALUE_PHP_VERSION:-"8.3.7RC1-fpm"}
 ARG VALUE_COMPOSER_VERSION
-ARG DEF_COMPOSER_VERSION=${VALUE_COMPOSER_VERSION}
+ARG DEF_COMPOSER_VERSION=${VALUE_COMPOSER_VERSION:-"2.7.4"}
 # config install composer
 FROM composer:${DEF_COMPOSER_VERSION} AS compvers
 
@@ -10,15 +10,20 @@ FROM composer:${DEF_COMPOSER_VERSION} AS compvers
 FROM php:${DEF_PHP_VERSION}
 
 # variable version (environnement)
-ARG VALUE_XDEBUG_VERSION
-ENV DEF_XDEBUG_VERSION=${VALUE_XDEBUG_VERSION}
+ARG VALUE_PHP_VERSION
+ENV DEF_PHPX_VERSION=${VALUE_PHP_VERSION}
+ENV DEF_PHPXDEBUG_VERSION=${VALUE_PHP_VERSION:-"3.3.2"}
+ENV DEF_PHPXDEBUG_VERSION=${DEF_PHPXDEBUG_VERSION##${DEF_PHPX_VERSION}}
+ARG PHP_XDEBUG_VERSION
+ENV DEF_XDEBUG_VERSION=${DEF_PHPXDEBUG_VERSION:-"${PHP_XDEBUG_VERSION}"}
 ARG VALUE_GOLANG_VERSION
-ENV DEF_GOLANG_VERSION=${VALUE_GOLANG_VERSION}
+ENV DEF_GOLANG_VERSION=${VALUE_GOLANG_VERSION:-"1.11.8"}
 ARG GOLANG_VERSION="https://storage.googleapis.com/golang/go${DEF_GOLANG_VERSION}.linux-amd64.tar.gz"
 ENV XDEBUG_VERSION=${DEF_XDEBUG_VERSION:+"xdebug-${DEF_XDEBUG_VERSION}"}
 ENV XDEBUG_VERSION=${XDEBUG_VERSION:-'xdebug'}
 
-ENV PHP_FOLDER_PROJECT="/usr/local/apache2/www"
+ARG PHP_FOLDER_PROJECT
+ENV PHP_FOLDER_PROJECT=${PHP_FOLDER_PROJECT:-"/usr/local/apache2/www"}
 ENV PHP_FOLDER_LOG="/var/log/docker/php/"
 ENV PHP_FOLDER_LOG_XDEBUG="/var/log/docker/xdebug/"
 ENV PHP_FOLDER_TMP="/var/tmp/docker/php/"
@@ -52,10 +57,8 @@ RUN apt install -y libjpeg-dev
 RUN apt install -y libpng-dev
 RUN apt install -y libmcrypt-dev
 RUN apt install -y unzip
+RUN apt install -y git
 RUN apt install -y cron
-#pour mailhog 
-RUN apt install --no-install-recommends --assume-yes --quiet ca-certificates curl git
-RUN apt install -y libc-client-dev libkrb5-dev
 #pour YAML extension
 RUN apt install libyaml-dev -y
 #del list
@@ -76,8 +79,6 @@ RUN docker-php-ext-install intl
 
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap
-
-RUN groupadd docker
 
 # Install YAML extension
 RUN pecl install yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini
