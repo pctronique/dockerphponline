@@ -99,11 +99,11 @@ RUN crontab /etc/cron.d/dockercron
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
 COPY xdebug_extends.sh ${PHP_FOLDER_INIT}
-RUN chmod +x ${PHP_FOLDER_INIT}xdebug_extends.sh
-RUN ${PHP_FOLDER_INIT}xdebug_extends.sh
+RUN chmod +x ${PHP_FOLDER_INIT}/xdebug_extends.sh
+RUN ${PHP_FOLDER_INIT}/xdebug_extends.sh
 
 COPY importdata.sh ${PHP_FOLDER_INIT}
-RUN chmod +x ${PHP_FOLDER_INIT}importdata.sh
+RUN chmod +x ${PHP_FOLDER_INIT}/importdata.sh
 
 COPY docker-data-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-data-entrypoint.sh

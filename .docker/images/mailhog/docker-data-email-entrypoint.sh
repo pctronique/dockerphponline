@@ -10,6 +10,6 @@ then
     MH_FOLDER_INIT="/var/docker/mailhog/"
 fi
 
-${MH_FOLDER_INIT}importdata.sh 2>> ${MH_FOLDER_LOG}installdata.log
+${MH_FOLDER_INIT}/importdata.sh 2>> ${MH_FOLDER_LOG}/installdata.log
 
 exec "$@"

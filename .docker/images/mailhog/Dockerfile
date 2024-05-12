@@ -27,7 +27,7 @@ RUN go install github.com/mailhog/MailHog@${DEF_MHOG_VERSION}
 RUN cp /root/go/bin/MailHog /usr/bin/MailHog
 
 COPY importdata.sh ${MH_FOLDER_INIT}
-RUN chmod +x ${MH_FOLDER_INIT}importdata.sh
+RUN chmod +x ${MH_FOLDER_INIT}/importdata.sh
 
 COPY docker-data-email-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-data-email-entrypoint.sh

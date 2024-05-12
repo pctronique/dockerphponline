@@ -16,7 +16,7 @@ then
 fi
 
 if [ ! -z "$(ls -A ${MH_FOLDER_INIT_DATA}/*@mailhog.example)" ]; then
-    cp -r ${MH_FOLDER_INIT_DATA}/*@mailhog.example "${MH_MAILDIR_PATH}/" 2>> ${MH_FOLDER_LOG}installdata.log
+    cp -r ${MH_FOLDER_INIT_DATA}/*@mailhog.example "${MH_MAILDIR_PATH}/" 2>> ${MH_FOLDER_LOG}/installdata.log
 fi
 
 exit 0

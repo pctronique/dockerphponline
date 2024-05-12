@@ -22,8 +22,9 @@ fi
 
 if [ ! -d "${PHP_FOLDER_PROJECT}/${PHP_FOLDER_DATA}" ]; then
     if [ ! -z "$(ls -A ${PHP_FOLDER_INIT_DATA})" ]; then
-        mkdir -p "${PHP_FOLDER_PROJECT}/${PHP_FOLDER_DATA}" 2>> ${PHP_FOLDER_LOG}installdata.log
-        cp -r ${PHP_FOLDER_INIT_DATA}/* "${PHP_FOLDER_PROJECT}/${PHP_FOLDER_DATA}/" 2>> ${PHP_FOLDER_LOG}installdata.log
+        mkdir -p "${PHP_FOLDER_PROJECT}/${PHP_FOLDER_DATA}" 2>> ${PHP_FOLDER_LOG}/installdata.log
+        cp -r ${PHP_FOLDER_INIT_DATA}/* "${PHP_FOLDER_PROJECT}/${PHP_FOLDER_DATA}/" 2>> ${PHP_FOLDER_LOG}/installdata.log
+        chmod 777 -R "${PHP_FOLDER_PROJECT}/${PHP_FOLDER_DATA}"
     fi
 fi
 
