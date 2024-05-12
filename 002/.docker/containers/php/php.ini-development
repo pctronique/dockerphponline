@@ -385,7 +385,7 @@ expose_php = On
 ; Maximum execution time of each script, in seconds
 ; http://php.net/max-execution-time
 ; Note: This directive is hardcoded to 0 for the CLI SAPI
-max_execution_time = 0
+max_execution_time = 30
 
 ; Maximum amount of time each script may spend parsing request data. It's a good
 ; idea to limit this time on productions servers in order to eliminate unexpectedly
@@ -395,7 +395,7 @@ max_execution_time = 0
 ; Development Value: 60 (60 seconds)
 ; Production Value: 60 (60 seconds)
 ; http://php.net/max-input-time
-max_input_time = -1
+max_input_time = 60
 
 ; Maximum input variable nesting level
 ; http://php.net/max-input-nesting-level
@@ -406,7 +406,7 @@ max_input_time = -1
 
 ; Maximum amount of memory a script may consume
 ; http://php.net/memory-limit
-memory_limit = 256M
+memory_limit = 128M
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -462,9 +462,7 @@ memory_limit = 256M
 ; Development Value: E_ALL
 ; Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
 ; http://php.net/error-reporting
-;error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
-;error_reporting = E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT & ~E_DEPRECATED;
-error_reporting = E_ALL & ~E_STRICT & ~E_DEPRECATED;
+error_reporting = E_ALL
 
 ; This directive controls whether or not and where PHP will output errors,
 ; notices and warnings too. Error output is very useful during development, but
@@ -537,7 +535,7 @@ report_memleaks = On
 ; Development Value: Off
 ; Production Value: Off
 ; http://php.net/track-errors
-track_errors = Off
+;track_errors = Off
 
 ; Turn off normal error reporting and emit XML-RPC error XML
 ; http://php.net/xmlrpc-errors
@@ -551,7 +549,7 @@ track_errors = Off
 ; the error message is formatted as HTML or not.
 ; Note: This directive is hardcoded to Off for the CLI SAPI
 ; http://php.net/html-errors
-html_errors = On
+;html_errors = On
 
 ; If html_errors is set to On *and* docref_root is not empty, then PHP
 ; produces clickable error messages that direct to a page describing the error
@@ -585,9 +583,9 @@ html_errors = On
 ; empty.
 ; http://php.net/error-log
 ; Example:
-error_log = "/var/log/docker/php/php_errors.log"
+;error_log = php_errors.log
 ; Log errors to syslog (Event Log on Windows).
-error_log = syslog
+;error_log = syslog
 
 ; The syslog ident is a string which is prepended to every message logged
 ; to syslog. Only used when error_log is set to syslog.
@@ -693,7 +691,7 @@ auto_globals_jit = On
 ; Its value may be 0 to disable the limit. It is ignored if POST data reading
 ; is disabled through enable_post_data_reading.
 ; http://php.net/post-max-size
-post_max_size = 100M
+post_max_size = 8M
 
 ; Automatically add files before PHP document.
 ; http://php.net/auto-prepend-file
@@ -717,21 +715,18 @@ default_charset = "UTF-8"
 ; PHP internal character encoding is set to empty.
 ; If empty, default_charset is used.
 ; http://php.net/internal-encoding
-;internal_encoding = "UTF-8"
-;internal_encoding = "iso-8859-1"
+;internal_encoding =
 
 ; PHP input character encoding is set to empty.
 ; If empty, default_charset is used.
 ; http://php.net/input-encoding
-;input_encoding = "UTF-8"
-;input_encoding = "iso-8859-1"
+;input_encoding =
 
 ; PHP output character encoding is set to empty.
 ; If empty, default_charset is used.
 ; See also output_buffer.
 ; http://php.net/output-encoding
-; output_encoding = "UTF-8"
-;output_encoding = "iso-8859-1"
+;output_encoding =
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Paths and Directories ;
@@ -844,14 +839,14 @@ file_uploads = On
 ; Temporary directory for HTTP uploaded files (will use system default if not
 ; specified).
 ; http://php.net/upload-tmp-dir
-upload_tmp_dir = "/var/tmp/docker/php/"
+;upload_tmp_dir =
 
 ; Maximum allowed size for uploaded files.
 ; http://php.net/upload-max-filesize
-upload_max_filesize = 100M
+upload_max_filesize = 2M
 
 ; Maximum number of files that can be uploaded via a single request
-max_file_uploads = 50
+max_file_uploads = 20
 
 ;;;;;;;;;;;;;;;;;;
 ; Fopen wrappers ;
@@ -965,7 +960,6 @@ cli_server.color = On
 ; Defines the default timezone used by the date functions
 ; http://php.net/date.timezone
 ;date.timezone =
-;date.timezone = Europe/Paris
 
 ; http://php.net/date.default-latitude
 ;date.default_latitude = 31.7667
@@ -990,19 +984,19 @@ cli_server.color = On
 ; Use of this INI entry is deprecated, use global input_encoding instead.
 ; If empty, default_charset or input_encoding or iconv.input_encoding is used.
 ; The precedence is: default_charset < input_encoding < iconv.input_encoding
-;iconv.input_encoding = ISO-8859-1
+;iconv.input_encoding =
 
 ; Use of this INI entry is deprecated, use global internal_encoding instead.
 ; If empty, default_charset or internal_encoding or iconv.internal_encoding is used.
 ; The precedence is: default_charset < internal_encoding < iconv.internal_encoding
-;iconv.internal_encoding = ISO-8859-1
+;iconv.internal_encoding =
 
 ; Use of this INI entry is deprecated, use global output_encoding instead.
 ; If empty, default_charset or output_encoding or iconv.output_encoding is used.
 ; The precedence is: default_charset < output_encoding < iconv.output_encoding
 ; To use an output encoding conversion, iconv's output handler must be set
 ; otherwise output encoding conversion cannot be performed.
-;iconv.output_encoding = ISO-8859-1
+;iconv.output_encoding =
 
 [imap]
 ; rsh/ssh logins are disabled by default. Use this INI entry if you want to
@@ -1168,7 +1162,7 @@ mysqli.default_port = 3306
 ; Default socket name for local MySQL connects.  If empty, uses the built-in
 ; MySQL defaults.
 ; http://php.net/mysqli.default-socket
-mysqli.default_socket = "/tmp/mysql.sock"
+mysqli.default_socket =
 
 ; Default host for mysqli_connect() (doesn't apply in safe mode).
 ; http://php.net/mysqli.default-host

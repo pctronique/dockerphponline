@@ -1,6 +1,6 @@
-# dockerphponline : Docker Apache Mariadb Php
+# damp : Docker Apache Mariadb Php
 Par [pctronique](https://pctronique.fr/) <br />
-Version 1.2.0
+Version 1.1.0
 
 <details>
   <summary>Table des matières</summary>
@@ -27,9 +27,12 @@ Version 1.2.0
         <a href="#Dossiers-de-configuration-par-défaut">Dossiers de configuration par défaut</a>
         <ul>
           <li><a href="#Config-dans-www">Config dans www</a></li>
-          <li><a href="#Sgbd-data">Sgbd data</a></li>
+          <li><a href="#Data-dans-www">Data dans www</a></li>
+          <li><a href="#Sgbd-data">Sgbd dataw</a></li>
+          <li><a href="#Email-data">Email data</a></li>
         </ul>
-    </li>
+    </li>  
+    <li><a href="#Cron">Cron</a></li>
     <li>
         <a href="#Stockages">Stockages</a>
         <ul>
@@ -49,7 +52,7 @@ Version 1.2.0
 
 ## Présentation
 
-Pour créer un projet php avec docker. (identique à [damp](https://github.com/pctronique/damp/tree/main/default)).
+Pour créer un projet php avec docker.
 
 Pour Windows, Linux et Mac.
 
@@ -91,17 +94,6 @@ Sur un terminal (pour créer le fichier « .env ») :
 ```
 $ cp .env.example .env
 ```
-
-> [!NOTE]
-> Si vous voulez envoyer le fichier « .env » sur le git, vous devrez modifier le fichier « .gitignore ». Mais je le déconseille fortement pour un travail de groupe.
-> 
-> Supprimer la ligne :
-> ```
-> /.env
-> ```
-
-> [!WARNING]
-> Il est préférable de ne pas envoyer ce fichier sur le git, l'un des collègues du projet peut avoir un des ports déjà utilisé et devra le modifier. Ceci changera pour tout le groupe si vous l'avez mis sur le git.
 
 Il est possible de modifier les ports dans le fichier « .env » (il est préférable de conserver les ports par défaut dans l’exemple).
 ```
@@ -203,10 +195,62 @@ Par le nouveau chemin :
 > [!WARNING]
 > Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
 
+### Data dans www
+
+Il va permettre de récupérer des fichiers par défaut lors de la création du conteneur.
+Vous pouvez déplacer le dossier « data » du dossier « www », mais il doit rester dans ce dossier.
+Par exemple le placer dans « src/data » (« www/src/data »).
+
+> [!NOTE]
+> Ceci concerne seulement le dossier « data » qui se trouve dans le dossier « www ».
+
+Remplacer la ligne dans le fichier « .env.example »:
+```
+FOLDER_DATA=data
+```
+Par le nouveau chemin :
+```
+FOLDER_DATA=src/data
+```
+
+Pas oublier de le modifier dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
+```
+/www/data
+```
+Par le nouveau chemin :
+```
+/www/src/data
+```
+
+> [!NOTE]
+> Il va se construit dans votre dossier au moment de la création du conteneur et il va se remplir à partir du dossier « ./config/data/ ».
+
+> [!WARNING]
+> Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
+
 ### Sgbd data
 
 Il va permettre de récupérer les bases de données par défaut.
 Vous devez placer les fichiers sql dans le dossier « ./config/sgbd_data/ » pour récupérer une base de données par défaut.
+
+### Email data
+
+Il va permettre de récupérer les emails par défaut.
+Vous devez placer les fichiers "@mailhog.example" dans le dossier « ./config/email_data/ » pour récupérer les emails par défaut.
+
+## Cron
+
+Vous pouvez facilement mettre en place des tâches planifiés.
+Vous devez les placer dans le fichier « ./config/dockercron ».
+
+Exemple (dans « ./config/dockercron ») :
+```
+*  *  *  *  * echo "hello" >> /var/log/docker/php/testcron.log
+*  *  *  *  * echo "hello projet" >> /usr/local/apache2/www/testcron.log
+```
+
+> [!NOTE]
+> Toutes modifications du fichier sera récupérée automatiquement par le conteneur.
 
 ## Stockages
 
