@@ -29,6 +29,7 @@ ENV PHP_FOLDER_LOG="/var/log/docker/php/"
 ENV PHP_FOLDER_LOG_XDEBUG="/var/log/docker/xdebug/"
 ENV PHP_FOLDER_TMP="/var/tmp/docker/php/"
 ENV PHP_FOLDER_INIT="/var/docker/php/"
+ENV CRON_FOLDER_INIT="/var/docker/cron/"
 ENV PHP_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
 
 # install package
@@ -91,10 +92,15 @@ RUN mkdir -p ${PHP_FOLDER_INIT}
 RUN mkdir -p ${PHP_FOLDER_LOG}
 RUN mkdir -p ${PHP_FOLDER_LOG_XDEBUG}
 RUN mkdir -p ${PHP_FOLDER_INIT}
+RUN mkdir -p ${CRON_FOLDER_INIT}
 RUN mkdir -p ${PHP_FOLDER_INIT_DATA}
 
+COPY dockercron ${CRON_FOLDER_INIT}
 COPY dockercron /etc/cron.d/dockercron
 RUN crontab /etc/cron.d/dockercron
+
+COPY cronauto.sh ${CRON_FOLDER_INIT}
+RUN chmod +x ${CRON_FOLDER_INIT}/cronauto.sh
 
 # xdebug.
 RUN pecl install -o -f ${XDEBUG_VERSION} && rm -rf /tmp/pear
