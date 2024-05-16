@@ -44,7 +44,7 @@ services:
             - ./.dockertmp/tmp/php:/var/tmp/docker/php:rw
         environment:
             - TZ=${VALUE_TIMEZONES}
-            - PHP_FOLDER_DATA=data
+            - PHP_FOLDER_DATA=${FOLDER_DATA}
             
 ###########################
 # Setup the Database (MariaDB) container
